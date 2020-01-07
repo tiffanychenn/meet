@@ -1,0 +1,87 @@
+#alive {
+    color: #33CA7F;
+}
+
+#dead {
+    color: red;
+}
+
+.blog-masthead{
+    padding: 10px;
+    background-color:#578CA9;
+    color: #95DEE3;
+}
+
+body{
+    background-color:#cddce5;
+    color: #004B8D;
+}
+
+div{
+    padding: 25px;
+}
+
+h1{
+    padding:10px;
+    font-family: 'Georgia';
+    font-size: 45px;
+    font-weight: bold;
+    margin: 0;
+    //color: #DC4C46;
+}
+
+h2{
+    font: 30px Courier;
+    font-weight: bold;
+    color:#F2552C;
+}
+
+h3{
+    font:
+}
+
+
+head{
+    //background-color:#034F84;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+#p1{
+    //color: #F6D155;
+}
+
+#p2{
+    //color: #95DEE3;
+}
+
+svg {
+  border-width: 5px;
+  border-style: dashed;
+  border-color: lightsteelblue;
+}
+
+.arc text {
+  font: 11px sans-serif;
+  text-anchor: middle;
+}
+
+.arc path {
+  stroke: #fff;
+}
+
+.nav-lt{
+    background-color: seashell;
+    color: DarkSlateGrey;
+}
+
+.tabby-container{
+    background-color:seashell;
+    margin: 20px;
+    border-width: 5px;
+    border-style:solid;
+    border-color:#F2552C;
+}
