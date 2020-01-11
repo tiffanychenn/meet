@@ -24,29 +24,17 @@
   <nav class="navbar navbar-expand-lg sticky-top navbar-light" style="background-color: seashell;">
     <a class="navbar-brand" href="/">Let's play Jeopardy</a>
 
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
       {% if loggedin %}
-      <li class="nav-item">
-        <a class="nav-link" href="/profile">Profile</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/mkgame">New Game</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/fndgame">Join Game</a>
-      </li>
+      <form class="form-inline my-2 my-lg-0" action="/logout">
+        <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button>
+      </form>
+      {% else %}
+      <form class="form-inline my-2 my-lg-0" action="/login">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login/Register</button>
+      </form>
       {% endif %}
     </ul>
-
-    {% if loggedin %}
-    <form class="form-inline my-2 my-lg-0" action="/logout">
-      <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button>
-    </form>
-    {% else %}
-    <form class="form-inline my-2 my-lg-0" action="/login">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login/Register</button>
-    </form>
-    {% endif %}
 
   </nav>
 
@@ -54,9 +42,6 @@
   <!-- main content -->
   {% block body %}{% endblock %}
 
-  <!-- javascript -->
-
-  {% block js %}{% endblock %}
 </body>
 
 </html>

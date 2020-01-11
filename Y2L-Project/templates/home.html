@@ -1,5 +1,20 @@
 {% extends "base.html" %}
 
 {% block body %}
-<h3>Welcome!</h3>
+<div class="container-1">
+
+  {% if loggedin %}
+  <h3 style="text-align: center;">Hello {{username}}!</h3>
+  <h4 style="text-align: center;">Current score: {{score}}</h4>
+  {% endif %}
+
+  <form class="signin" method="POST" action="/check">
+    <h3  style="text-align: center;">Category: {{category}}</h3>
+    <h2 class="form-signin-heading" style="text-align: center;">{{question}}</h2><br>
+    <h3 style="text-align: center;" >Value: {{value}}</h3>
+    <input type="hidden" name="points" value={{value}}></input>
+    <input type="text" name="input" placeholder="Type your answer here" class="form-control" required><br>
+    <button class="btn btn-sml btn-primary btn-block" type="submit">Submit</button> <br>
+  </form>
+</div>
 {% endblock %}

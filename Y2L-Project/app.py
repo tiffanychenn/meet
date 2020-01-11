@@ -10,7 +10,29 @@ app.secret_key = "MY_SUPER_SECRET_KEY"
 
 @app.route("/")
 def home():
-    return render_template('home.html')
+    response = requests.get('http://jservice.io/api/random')
+    info = json.loads(response.content)[0]
+    question = info["question"]
+    category = info["category"]["title"]
+    answer = info["answer"]
+    session['answer'] = answer
+    value = info['value']
+    if 'username' in session:
+        user = query_by_username(session['username'])
+        return render_template('home.html', question=question, category=category, value=value, loggedin='username' in session, username=session['username'], score=user.score)
+    else:
+        return render_template('home.html', question=question, category=category, value=value, loggedin=False)
+
+@app.route('/check', methods=["POST"])
+def check():
+    resp = request.form["input"]
+    answer = session['answer']
+    if resp.lower() == answer.lower() and 'username' in session:
+        user = query_by_username(session['username'])
+        print(user.score + int(request.form['points']))
+        update_score(session['username'], user.score + int(request.form['points']))
+    session.pop('answer', None)
+    return redirect(url_for('home'))
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -23,6 +45,7 @@ def login():
         if password != user.password:
             return redirect(url_for('login'))
         else:
+            session["username"] = username
             return redirect(url_for('home'))
 
 @app.route("/register")
@@ -39,6 +62,11 @@ def user_creation():
     else:
         add_user(user,pw)
         return redirect(url_for('login'))
+
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect(url_for('home'))
 
 #####################
 
